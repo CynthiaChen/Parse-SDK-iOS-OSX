@@ -120,10 +120,12 @@ static NSString *const PFGeoPointCodingLongitudeKey = @"longitude";
     if (!self) return nil;
 
     id latObj = dictionary[PFGeoPointCodingLatitudeKey];
-    PFParameterAssert([latObj isKindOfClass:[NSNumber class]], @"Invalid latitude type passed: %@", latObj);
+    PFParameterAssert([latObj isKindOfClass:[NSNumber class]] ||
+                      [latObj isKindOfClass:[NSString class]], @"Invalid latitude type passed: %@", latObj);
 
     id longObj = dictionary[PFGeoPointCodingLongitudeKey];
-    PFParameterAssert([longObj isKindOfClass:[NSNumber class]], @"Invalid longitude type passed: %@", longObj);
+    PFParameterAssert([longObj isKindOfClass:[NSNumber class]] ||
+                      [longObj isKindOfClass:[NSString class]], @"Invalid longitude type passed: %@", longObj);
 
     _latitude = [latObj doubleValue];
     _longitude = [longObj doubleValue];
